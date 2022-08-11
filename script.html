@@ -1,0 +1,53 @@
+<html>
+
+<body>
+    <center>
+        <div>
+            <button style="color:white;
+                    background-color: black;
+                    cursor:pointer;
+                    border:none;
+                    width: 300px;
+                    height: 100px;
+                    font-size: 15px;" onclick="get()">
+                Users Registered With Us : 
+            </button>
+        </div>
+        <div id="insert">
+        </div>
+    </center>
+    <script>
+        const get = () => {
+            var ins = document.getElementById("insert");
+            fetch('https://jsonplaceholder.typicode.com/posts?utm_source=Mailerlite&utm_medium=E-mail&utm_campaign=Test%20Series&utm_term=2022-08-09')
+                .then((response) => response.json())
+                .then((data) => {
+                    //console.log(data)
+
+                    const tobe = data.map((users) => {
+                        if (users.userId == 1) {
+                            //console.log(users.userId);
+                            const ans = `Id is ${users.id}`;
+                            console.log(ans);
+                            const title = `Title is ${users.title}`;
+                            console.log(title);
+                            return `
+            <p>id : ${users.id}</p>
+            <p>title : ${users.title}</p>
+            <p>user ID : ${users.userId}</p>
+            <p> body : ${users.body}</p>
+            <br>
+                `
+
+                        }
+                    })
+                        .join(" ");
+                    ins.innerHTML = tobe;
+
+
+                });
+        };
+    </script>
+</body>
+
+</html>
